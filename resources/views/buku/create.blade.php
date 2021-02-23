@@ -30,8 +30,8 @@
               <!-- /.card-header -->
               <!-- form start -->
 
-              {{-- <form action="{{ route('dashboard.buku.store') }}" method="post" role="form">
-                  @csrf --}}
+              <form action="{{ route('dashboard.buku.store') }}" method="post" role="form" enctype="multipart/form-data">
+                  @csrf
                 <div class="card-body">
                     @if($errors->any())
               <div class="alert alert-danger" role="alert">
@@ -44,7 +44,7 @@
               @endif
               <div class="form-group">
                 <label>Kategori</label>
-                <select name="id_kategori" class=" form-control">
+                <select name="kategori" class=" form-control">
                     <option value="">- Pilih -</option>
                     @foreach ($kategori as $item)
                     <option value="{{ $item->id_kategori }}">{{ $item->nama }}</option>
@@ -80,14 +80,16 @@
                 <input type="text" name="lokasi" class="form-control" id="exampleInputEmail1" placeholder="Lokasi" value="{{  old('lokasi') }}">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Gambar</label>
-                <input type="text" name="gambar" class="form-control" id="exampleInputEmail1" placeholder="Gambar" value="{{  old('email') }}">
+                <label for="thumbnail">Upload Gambar</label>
+                <input type="file" class="form-control-file" id="thumbnail" name="thumbnail">
+                {{-- <input type="text" name="thumbnail" class="form-control" id="exampleInputEmail1" placeholder="Gambar" value="{{  old('gambar') }}"> --}}
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Status</label>
-                <input type="text" name="Status" class="form-control" id="exampleInputEmail1" placeholder="Tahun Terbit" value="{{  old('status') }}">
-            </div>
-
+            {{-- <div class="form-group">
+                <label>Status</la1bel>
+                <select name="status" class=" form-control">
+                    <option value="tersedia" >Tersedia</option>
+                </select>
+              </div> --}}
         </div>
                         <!-- /.card-body -->
 

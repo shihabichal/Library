@@ -55,8 +55,10 @@
                         </thead>
                         <tbody>
                         @foreach ($buku as $a)
+
                         <tr>
-                          <td>{{  $a->gambar }}</td>
+                          {{-- <td>{{  $a->gambar }}</td> --}}
+                          <td><img class="card-img-top" src="{{ url('images/uploads', $a->gambar) }}" width="80" height="100" alt="Card image cap"></td>
                           <td>{{  $a->categorize['nama']}}</td>
                           <td>{{  $a->judul }}</td>
                           <td>{{  $a->pengarang }}</td>
@@ -64,12 +66,12 @@
                           <td>{{  $a->tahun_terbit }}</td>
                           <td>{{  $a->ISBN }}</td>
                           <td>{{  $a->jumlah }}</td>
-                          <td>{{  $a->lokasi }}</td>
                           <td>{{  $a->status }}</td>
                           {{-- <td>
-                            <a href="{{ route('dashboard.admin.edit', $a->id) }}" class="btn btn-xs btn-primary">Edit</a>
-                            <form action="{{ route('dashboard.admin.delete', $a->id) }}" method="POST" class="inline-block">
-                                @csrf
+                              <a href="{{ route('dashboard.admin.edit', $a->id) }}" class="btn btn-xs btn-primary">Edit</a>
+                              <form action="{{ route('dashboard.admin.delete', $a->id) }}" method="POST" class="inline-block">
+                                  @csrf`
+                                  <td>{{  $a->lokasi }}</td>
                                 @method('delete')
                                 <button type="submit" onclick="return confirm('Yakin?')" class="btn btn-xs btn-danger">Delete</a>
                             </form>
