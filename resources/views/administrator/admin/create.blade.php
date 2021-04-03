@@ -30,7 +30,7 @@
               <!-- /.card-header -->
               <!-- form start -->
 
-              <form action="{{ route('dashboard.admin.store') }}" method="post" role="form">
+              <form action="{{ route('admin.admin.store') }}" method="post" role="form">
                   @csrf
                 <div class="card-body">
                     @if($errors->any())
@@ -47,8 +47,8 @@
                         <input type="text" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Nama" required value="{{  old('nama') }}">
                       </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Alamat</label>
-                        <input type="text" name="alamat" class="form-control" id="exampleInputEmail1" placeholder="Nama" required value="{{  old('alamat') }}">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Username" required value="{{  old('username') }}">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">No HP</label>

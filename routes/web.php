@@ -2,62 +2,55 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('clear', function () {
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('route:clear');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('config:cache');
 
-Route::prefix('/')->name('dashboard.')->group(function () {
-
-
-    Route::prefix('/')->name('login.')->group(function () {
-        Route::get('/', 'LoginController@index')->name('index');
-        Route::post('login', 'LoginController@login')->name('index');
-    });
-
-    Route::prefix('member_log')->name('member.')->group(function () {
-        // Route::get('/', 'MemberController@index')->name('index');
-        Route::get('/', function () {
-            return view('member_log.index');
-        });
-    });
-
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/', 'AdminController@index')->name('index');
-        Route::get('tambah', 'AdminController@tambah')->name('create');
-        Route::post('tambah', 'AdminController@store')->name('store');
-        Route::get('edit/{id}', 'AdminController@edit')->name('edit');
-        Route::patch('edit/{id}', 'AdminController@update')->name('update');
-        Route::delete('delete/{id}', 'AdminController@delete')->name('delete');
-    });
-    Route::prefix('pegawai')->name('pegawai.')->group(function () {
-        Route::get('/', 'PegawaiController@index')->name('index');
-        Route::get('tambah', 'PegawaiController@tambah')->name('create');
-        Route::Post('tambah', 'PegawaiController@store')->name('store');
-        Route::get('edit/{id}', 'PegawaiController@edit')->name('edit');
-        Route::patch('edit/{id}', 'PegawaiController@update')->name('update');
-        Route::delete('delete/{id}', 'PegawaiController@delete')->name('delete');
-    });
-    Route::prefix('member')->name('member.')->group(function () {
-        Route::get('/', 'MemberController@index')->name('index');
-        Route::get('tambah', 'MemberController@tambah')->name('create');
-        Route::Post('tambah', 'MemberController@store')->name('store');
-        Route::get('edit/{id_member}', 'MemberController@edit')->name('edit');
-        Route::patch('edit/{id_member}', 'MemberController@update')->name('update');
-        Route::delete('delete/{id}', 'MemberController@delete')->name('delete');
-    });
-    Route::prefix('buku')->name('buku.')->group(function () {
-        Route::get('/', 'BukuController@index')->name('index');
-        Route::get('tambah', 'BukuController@tambah')->name('create');
-        Route::Post('tambah', 'BukuController@store')->name('store');
-        Route::get('edit/{id_buku}', 'BukuController@edit')->name('edit');
-        Route::patch('edit/{id_buku}', 'BukuController@update')->name('update');
-        Route::delete('delete/{id_buku}', 'BukuController@delete')->name('delete');
-    });
+    return '<h1>Cache Clear</h1>';
 });
+
+Route::prefix('/')->name('login.')->group(function () {
+    Route::get('/', 'LoginController@index')->name('index');
+    Route::post('login', 'LoginController@login')->name('proses');
+});
+
+
+Route::middleware(['auth.admin'])->prefix('administrator')->name('admin.')->group(
+    function () {
+        Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
+
+        Route::prefix('member_log')->name('member.')->group(function () {
+            // Route::get('/', 'MemberController@index')->name('index');
+            Route::get('/', function () {
+                return view('member_log.index');
+            });
+        });
+
+        Route::prefix('admin')->name('admin.')->group(function () {
+            Route::get('/', 'Admin\AdminController@index')->name('index');
+            Route::get('tambah', 'Admin\AdminController@tambah')->name('create');
+            Route::post('tambah', 'Admin\AdminController@store')->name('store');
+            Route::get('edit/{id}', 'Admin\AdminController@edit')->name('edit');
+            Route::patch('edit/{id}', 'Admin\AdminController@update')->name('update');
+            Route::delete('delete/{id}', 'Admin\AdminController@delete')->name('delete');
+        });
+        Route::prefix('member')->name('member.')->group(function () {
+            Route::get('/', 'Admin\MemberController@index')->name('index');
+            Route::get('tambah', 'Admin\MemberController@tambah')->name('create');
+            Route::Post('tambah', 'Admin\MemberController@store')->name('store');
+            Route::get('edit/{id_member}', 'Admin\MemberController@edit')->name('edit');
+            Route::patch('edit/{id_member}', 'Admin\MemberController@update')->name('update');
+            Route::delete('delete/{id}', 'Admin\MemberController@delete')->name('delete');
+        });
+        Route::prefix('buku')->name('buku.')->group(function () {
+            Route::get('/', 'Admin\BukuController@index')->name('index');
+            Route::get('tambah', 'Admin\BukuController@tambah')->name('create');
+            Route::Post('tambah', 'Admin\BukuController@store')->name('store');
+            Route::get('edit/{id_buku}', 'Admin\BukuController@edit')->name('edit');
+            Route::patch('edit/{id_buku}', 'Admin\BukuController@update')->name('update');
+            Route::delete('delete/{id_buku}', 'BukuController@delete')->name('delete');
+        });
+    }
+);

@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title') Edit Admin @endsection
+@section('title') Edit Member @endsection
 
 @section('body')
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Admin</h1>
+            <h1>Edit Member</h1>
           </div>
 
         </div>
@@ -25,12 +25,12 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit/ Admin</h3>
+                <h3 class="card-title">Edit Member</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
 
-              <form action="{{ route('dashboard.member.update', $data->id_member) }}" method="post" role="form">
+              <form action="{{ route('admin.member.update', $data->id_member) }}" method="post" role="form">
                   @csrf
                   @method('patch')
                 <div class="card-body">

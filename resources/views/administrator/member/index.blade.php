@@ -13,7 +13,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <a href="{{ route('dashboard.member.create') }}" class="btn btn-primary">Tambah</a>
+                <a href="{{ route('admin.member.create') }}" class="btn btn-primary">Tambah</a>
             </ol>
             </div>
         </div>
@@ -52,17 +52,17 @@
                         <tbody>
                         @foreach ($member as $a)
                         <tr>
-                          <td>{{  $a->id_member }}</td>
-                          <td>{{  $a->nama }}</td>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{  $a->nama_member }}</td>
                           <td>{{  $a->alamat }}</td>
                           <td>{{  $a->gender }}</td>
                           <td>{{  $a->nope }}</td>
                           <td>{{  $a->email }}</td>
                           <td>
-                            <a href="{{ route('dashboard.member.edit', $a->id_member) }}" class="btn btn-xs btn-primary">Edit</a>
-                            <form action="{{ route('dashboard.member.delete', $a->id_member) }}" method="POST" class="inline-block">
+                            <form action="{{ route('admin.member.delete', $a->id_member) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('delete')
+                                <a href="{{ route('admin.member.edit', $a->id_member) }}" class="btn btn-xs btn-primary">Edit</a>
                                 <button type="submit" onclick="return confirm('Yakin?')" class="btn btn-xs btn-danger">Delete</a>
                             </form>
                             </td>

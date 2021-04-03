@@ -30,7 +30,7 @@
               <!-- /.card-header -->
               <!-- form start -->
 
-              <form action="{{ route('dashboard.admin.update', $data->id) }}" method="post" role="form">
+              <form action="{{ route('admin.admin.update', $data->id_admin) }}" method="post" role="form">
                   @csrf
                   @method('patch')
                 <div class="card-body">
@@ -45,11 +45,11 @@
               @endif
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama</label>
-                        <input type="text" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Nama" required value="{{  old('nama') ?? $data->nama }}">
+                        <input type="text" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Nama" required value="{{  old('nama') ?? $data->nama_admin }}">
                       </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Alamat</label>
-                        <input type="text" name="alamat" class="form-control" id="exampleInputEmail1" placeholder="Nama" required value="{{  old('alamat') ?? $data->alamat }}">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Username" required value="{{  old('username') ?? $data->username }}">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">No HP</label>

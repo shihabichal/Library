@@ -30,7 +30,7 @@
               <!-- /.card-header -->
               <!-- form start -->
 
-              <form action="{{ route('dashboard.member.store') }}" method="post" role="form">
+              <form action="{{ route('admin.member.store') }}" method="post" role="form">
                   @csrf
                 <div class="card-body">
                     @if($errors->any())
