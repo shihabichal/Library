@@ -43,4 +43,13 @@ class LoginController extends Controller
             return redirect()->back()->with(['jenis' => 'danger', 'pesan' => 'Data login tidak ditemukan']);
         }
     }
+
+    public function logoutAdmin()
+    {
+        foreach (array_keys(config('auth.guards')) as $guard) {
+            Auth::guard('admin')->logout();
+        }
+
+        return redirect()->route('login.index');
+    }
 }

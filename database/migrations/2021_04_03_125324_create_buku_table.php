@@ -23,7 +23,7 @@ class CreateBukuTable extends Migration
             $table->string('jumlah');
             $table->string('lokasi');
             $table->string('gambar');
-            $table->string('status')->comment('0: habis 1: tersedia');
+            $table->string('status');
 
             $table->unsignedInteger('kategori_id');
             $table->foreign('kategori_id')->references('id_kategori')->on('kategori');

@@ -20,6 +20,7 @@ Route::prefix('/')->name('login.')->group(function () {
 Route::middleware(['auth.admin'])->prefix('administrator')->name('admin.')->group(
     function () {
         Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
+        Route::get('/logout', 'LoginController@logoutAdmin')->name('logoutAdmin');
 
         Route::prefix('member_log')->name('member.')->group(function () {
             // Route::get('/', 'MemberController@index')->name('index');
@@ -50,7 +51,7 @@ Route::middleware(['auth.admin'])->prefix('administrator')->name('admin.')->grou
             Route::Post('tambah', 'Admin\BukuController@store')->name('store');
             Route::get('edit/{id_buku}', 'Admin\BukuController@edit')->name('edit');
             Route::patch('edit/{id_buku}', 'Admin\BukuController@update')->name('update');
-            Route::delete('delete/{id_buku}', 'BukuController@delete')->name('delete');
+            Route::delete('delete/{id_buku}', 'Admin\BukuController@delete')->name('delete');
         });
     }
 );

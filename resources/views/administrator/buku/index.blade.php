@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title') Admin @endsection
+@section('title') Buku @endsection
 
 @section('body')
 <!-- Content Wrapper. Contains page content -->
@@ -13,7 +13,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <a href="{{ route('dashboard.buku.create') }}" class="btn btn-primary">Tambah</a>
+                <a href="{{ route('admin.buku.create') }}" class="btn btn-primary">Tambah</a>
             </ol>
           </div>
         </div>
@@ -55,27 +55,32 @@
                         </thead>
                         <tbody>
                         @foreach ($buku as $a)
-
                         <tr>
-                          {{-- <td>{{  $a->gambar }}</td> --}}
-                          <td><img class="card-img-top" src="{{ url('images/uploads', $a->gambar) }}" width="80" height="100" alt="Card image cap"></td>
-                          <td>{{  $a->categorize['nama']}}</td>
+                          <td>
+                              @if($a->gambar==null)
+                              <img class="card-img-top" src="{{ url('images/no-image.jpg') }}" style="width:80px;max-wdith:100%;">
+                              @else
+                              <img class="card-img-top" src="{{ url('images/uploads', $a->gambar) }}" style="width:80px;max-wdith:100%;">
+                              @endif
+                            </td>
+                          <td>{{  $a->nama}}</td>
                           <td>{{  $a->judul }}</td>
                           <td>{{  $a->pengarang }}</td>
                           <td>{{  $a->penerbit }}</td>
                           <td>{{  $a->tahun_terbit }}</td>
-                          <td>{{  $a->ISBN }}</td>
+                          <td>{{  $a->isbn }}</td>
                           <td>{{  $a->jumlah }}</td>
+                          <td>{{  $a->lokasi }}</td>
                           <td>{{  $a->status }}</td>
-                          {{-- <td>
-                              <a href="{{ route('dashboard.admin.edit', $a->id) }}" class="btn btn-xs btn-primary">Edit</a>
-                              <form action="{{ route('dashboard.admin.delete', $a->id) }}" method="POST" class="inline-block">
-                                  @csrf`
-                                  <td>{{  $a->lokasi }}</td>
+                          <td>
+                              <form action="{{ route('admin.buku.delete', $a->id_buku) }}" method="POST" class="inline-block">
+                                  @csrf
                                 @method('delete')
+                              <a href="{{ route('admin.buku.edit', $a->id_buku) }}" class="btn btn-xs btn-primary">Edit</a>
+
                                 <button type="submit" onclick="return confirm('Yakin?')" class="btn btn-xs btn-danger">Delete</a>
                             </form>
-                            </td> --}}
+                            </td>
                         </tr>
                         @endforeach
                         </tbody>
