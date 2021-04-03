@@ -53,5 +53,13 @@ Route::middleware(['auth.admin'])->prefix('administrator')->name('admin.')->grou
             Route::patch('edit/{id_buku}', 'Admin\BukuController@update')->name('update');
             Route::delete('delete/{id_buku}', 'Admin\BukuController@delete')->name('delete');
         });
+        Route::prefix('denda')->name('denda.')->group(function () {
+            Route::get('/', 'Admin\DendaController@index')->name('index');
+            Route::get('tambah', 'Admin\DendaController@tambah')->name('create');
+            Route::Post('tambah', 'Admin\DendaController@store')->name('store');
+            Route::get('edit/{id_denda}', 'Admin\DendaController@edit')->name('edit');
+            Route::patch('edit/{id_denda}', 'Admin\DendaController@update')->name('update');
+            Route::delete('delete/{id_denda}', 'Admin\DendaController@delete')->name('delete');
+        });
     }
 );

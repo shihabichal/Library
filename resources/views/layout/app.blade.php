@@ -87,15 +87,46 @@
             </a>
         </li>
 
+
         <li class="nav-item">
             <a href="{{ route('admin.buku.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-book-open"> </i>
-            <p>
-                Data Buku
-              </p>
+                <i class="nav-icon fas fa-book-open"> </i>
+                <p>
+                    Data Buku
+                </p>
             </a>
         </li>
 
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-list-ul"></i>
+              <p>
+                Transaksi
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Peminjaman</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-undo-alt nav-icon"></i>
+                  <p>Pengembalian</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.denda.index') }}" class="nav-link">
+                  <i class="fas fa-money-check-alt nav-icon"></i>
+                  <p>Denda</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- logout --}}
          <li class="nav-item">
             <a href="{{ route('admin.logoutAdmin') }}" class="nav-link">
             <i class="nav-icon fas fa-sign-in-alt"> </i>
