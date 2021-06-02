@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::prefix('memberlayout')->name('memberlayout.')->group(function () {
+    Route::get('/', 'Member\BukuController@index')->name('index');
+    // Route::post('login', 'MemberController@login')->name('proses');
+});
+Route::prefix('memberapp')->name('memberapp.')->group(function () {
+    Route::get('/', 'Member\BukuController@index')->name('index');
+    // Route::post('login', 'MemberController@login')->name('proses');
+});
 Route::get('clear', function () {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('route:clear');
@@ -10,6 +18,7 @@ Route::get('clear', function () {
 
     return '<h1>Cache Clear</h1>';
 });
+
 
 Route::prefix('/')->name('login.')->group(function () {
     Route::get('/', 'LoginController@index')->name('index');
